@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from scripts.cluster_de_novo import *
+from BFClust.cluster_de_novo import *
 
 def consensus_cluster(records, cluster_results, ntrees):
     all_clusters = np.transpose(np.array(cluster_results))

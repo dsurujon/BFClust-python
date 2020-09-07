@@ -2,9 +2,9 @@
 
 import numpy as np
 
-from scripts.cluster_de_novo import *
-from scripts.consensus import *
-from scripts.gbk_parsing import *
+from BFClust.cluster_de_novo import *
+from BFClust.consensus import *
+from BFClust.gbk_parsing import *
 
 import pickle
 import pandas as pd
