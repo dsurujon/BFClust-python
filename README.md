@@ -2,12 +2,29 @@
  Boundary Forest Clustering - python implementation
 
 ## Installation 
-Pip install coming soon
+Current version is 0.1.24:     
+https://test.pypi.org/project/BFClust/0.1.24/
+
+If you do not have conda installed, run the following lines
+```
+wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
+bash Miniconda2-latest-Linux-x86_64.sh
+export PATH=~/miniconda2/bin:$PATH
+```
+
+Please download and use the [bfclust_env.yml](https://github.com/dsurujon/BFClust_scripts_data/blob/master/protocols/bfclust_env.yml) file to set up the conda environment specific for BFClust, and then install BFClust via pip
+
+```
+conda env create -f bfclust_env.yml    
+conda activate bfclust_env
+
+pip install -i https://test.pypi.org/simple/ BFClust==0.1.24
+```
 
 ## Usage
 
 ```
-./BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild]
+BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength]
 ```
 
 The input files need to be in the same directory as genbank files. The CDS annotation from these genbank files will be used for orthologue clustering.    
