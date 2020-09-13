@@ -16,7 +16,7 @@ Please download and use the [bfclust24_env.yml](https://github.com/dsurujon/BFCl
 
 ```
 conda env create -f bfclust24_env.yml    
-conda activate bfclust24_env
+conda activate bfclust_env
 
 pip install -i https://test.pypi.org/simple/ BFClust==0.1.24
 ```
