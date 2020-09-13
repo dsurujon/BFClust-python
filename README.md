@@ -12,11 +12,11 @@ bash Miniconda2-latest-Linux-x86_64.sh
 export PATH=~/miniconda2/bin:$PATH
 ```
 
-Please download and use the [bfclust_env.yml](https://github.com/dsurujon/BFClust_scripts_data/blob/master/protocols/bfclust_env.yml) file to set up the conda environment specific for BFClust, and then install BFClust via pip
+Please download and use the [bfclust24_env.yml](https://github.com/dsurujon/BFClust-python/blob/master/bfclust24_env.yml) file to set up the conda environment specific for BFClust, and then install BFClust via pip
 
 ```
-conda env create -f bfclust_env.yml    
-conda activate bfclust_env
+conda env create -f bfclust24_env.yml    
+conda activate bfclust24_env
 
 pip install -i https://test.pypi.org/simple/ BFClust==0.1.24
 ```
