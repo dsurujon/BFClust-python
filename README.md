@@ -2,8 +2,8 @@
  Boundary Forest Clustering - python implementation
 
 ## Installation 
-Current version is 0.1.24:     
-https://test.pypi.org/project/BFClust/0.1.24/
+Current version is 0.2.3:     
+https://test.pypi.org/project/BFClust/0.2.3/
 
 If you do not have conda installed, run the following lines
 ```
@@ -18,13 +18,13 @@ Please download and use the [bfclust24_env.yml](https://github.com/dsurujon/BFCl
 conda env create -f bfclust24_env.yml    
 conda activate bfclust_env
 
-pip install -i https://test.pypi.org/simple/ BFClust==0.1.24
+pip install -i https://test.pypi.org/simple/ BFClust==0.2.3
 ```
 
 ## Usage
 
 ```
-BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength]
+BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength] -s [whether or not to ignore internal stop codons]
 ```
 
 The input files need to be in the same directory as genbank files. The CDS annotation from these genbank files will be used for orthologue clustering.    
@@ -50,7 +50,7 @@ outputdir
 
 ## Cluster augmentation
 ```
-./BFC-augment.py -i [input gbk directory] -o [output directory] -b [whether or not to perform initial representative selection]
+./BFCaugment.py -i [input gbk directory] -o [output directory] -b [whether or not to perform initial representative selection] -l [minseqlength] -s [whether or not to ignore internal stop codons]
 ```
 The input sequences will be added to the clustering results for an existing output directory. The existing output directory will include an additional sub-directory named ```Augmentation```
 
