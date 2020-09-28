@@ -4,15 +4,27 @@ import os
 from Bio import SeqIO
 from Bio import SeqRecord 
 
-def feature2record(thisfeature, thiscontig, strainname):
-    thisrecord = thisfeature.extract(thiscontig.seq).translate()
-    thisrecord = SeqRecord.SeqRecord(thisrecord)
-    thisrecord.id = thisfeature.qualifiers['locus_tag'][0]
-    thisrecord.strain = strainname
-    thisrecord.description = thisfeature.qualifiers['locus_tag'][0]
-    return(thisrecord)
+def feature2record(thisfeature, thiscontig, strainname, minseqlen, ignoreinternalstop):
+    try: 
+        if ignoreinternalstop:
+            thisrecord = thisfeature.extract(thiscontig.seq).translate(table=11, to_stop=False)
+            thisrecord = SeqRecord.SeqRecord(thisrecord)
+            #thisrecord.seq = str(thisrecord.seq).replace('*', 'X')
+            if len(str(thisrecord.seq))<=minseqlen:
+                return(None)
+        else: 
+            thisrecord = thisfeature.extract(thiscontig.seq).translate(table=11, to_stop=True)
+            thisrecord = SeqRecord.SeqRecord(thisrecord)
+            if len(str(thisrecord.seq))<=minseqlen:
+                return(None)
+        thisrecord.id = thisfeature.qualifiers['locus_tag'][0]
+        thisrecord.strain = strainname
+        thisrecord.description = thisfeature.qualifiers['locus_tag'][0]
+        return(thisrecord)
+    except KeyError:
+        return(None)
 
-def get_records_from_contigGBKs(thisdir):
+def get_records_from_contigGBKs(thisdir, minseqlen, ignoreinternalstop):
     #n=1
     gbks = os.listdir(thisdir)
     
@@ -27,7 +39,8 @@ def get_records_from_contigGBKs(thisdir):
 
         strainfeatures = []
         for contig in mystrain: 
-            newfeatures = [feature2record(i,contig,strainname) for i in contig.features if i.type=="CDS"]
+            newfeatures = [feature2record(i,contig,strainname, minseqlen, ignoreinternalstop) for i in contig.features if i.type=="CDS"]
+            newfeatures = list(filter(None, newfeatures))
             strainfeatures = strainfeatures+newfeatures
 
         allfeatures = allfeatures+strainfeatures

@@ -2,6 +2,7 @@
 
 import numpy as np
 
+from BFClust.BoundaryForest import *
 from BFClust.cluster_de_novo import *
 from BFClust.consensus import *
 from BFClust.gbk_parsing import *
@@ -14,28 +15,7 @@ def find_closest_on_BT(incoming_seqs, BT, treeseqs):
     representatives = np.zeros([n,1])
     
     for i in range(n):
-        curr_tree_node_ix = 0
-        curr_node_all_children_node_ix = BT[curr_tree_node_ix][1]
-        curr_node_score = aligner.score(incoming_seqs[i].seq, treeseqs[curr_tree_node_ix].seq)
-        
-        path_ixs = [curr_tree_node_ix]
-        path_scores = [curr_node_score]
-        
-        while len(BT[curr_tree_node_ix][1])>0:
-            #print(curr_tree_node_ix, BT[curr_tre_node_ix], path_ixs, path_scores)
-            max_score = -10000000
-            for child_node in curr_node_all_children_node_ix:
-                child_score = aligner.score(incoming_seqs[i].seq, treeseqs[child_node].seq)
-                if child_score>max_score:
-                    max_score = child_score
-                    best_child_node_ix = child_node
-            path_ixs = path_ixs + [best_child_node_ix]
-            path_scores = path_scores + [max_score]
-            curr_tree_node_ix = best_child_node_ix
-            curr_node_all_children_node_ix = BT[curr_tree_node_ix][1]
-            
-        best_match_index = np.argmax(path_scores)
-        representatives[i] = BT[path_ixs[best_match_index]][0] # index in the input sequence order - should match all_clusters
+       representatives[i] = find_rep(incoming_seqs[i], BT, treeseqs)
     return(representatives)
 
 
@@ -53,8 +33,10 @@ def augment(newseqs, existing_clust_dir, initialbt, threshold = 0.1, maxChild = 
         dataorder = list(range(n_newseqs))
         new_BT, new_BT_refs = make_BT(n_newseqs, newseqs, dataorder, threshold, maxChild)
         
-        new_clust_assignments_BT = np.zeros([len(new_BT), ntrees])
-        new_BT_seqs = [newseqs[n[0]] for n in new_BT]
+        new_clust_assignments_BT = np.zeros([new_BT.treeSize, ntrees])
+        tree_ixs_dict = new_BT.traverse()
+        new_BT_size = new_BT.treeSize
+        new_BT_seqs = [newseqs[tree_ixs_dict[i]] for i in  range(new_BT_size)]
         # find representatives on existing forest
         for t in range(ntrees):
             treename = 'BT'+str(t)
@@ -68,9 +50,9 @@ def augment(newseqs, existing_clust_dir, initialbt, threshold = 0.1, maxChild = 
         cons_clusters = np.zeros([len(newseqs),1])
         
         #extend consensus to all newseqs
-        for i in range(len(new_BT)):
-            new_clust_assignments[new_BT[i][0],:] = new_clust_assignments_BT[i,:]
-            cons_clusters[new_BT[i][0]] = cons_clusters_BT[i]
+        for i in range(new_BT.treeSize):
+            new_clust_assignments[tree_ixs_dict[i],:] = new_clust_assignments_BT[i,:]
+            cons_clusters[tree_ixs_dict[i]] = cons_clusters_BT[i]
         
         for i in range(len(newseqs)):
             treeref = new_BT_refs[i]
