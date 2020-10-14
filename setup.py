@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = 'BFClust',
-    version = '0.1.18',
+    version = '0.1.25',
     description = 'Boundary Forest Clustering',
     url = 'https://github.com/dsurujon/BFClust-python',
     author = 'Defne Surujon',
