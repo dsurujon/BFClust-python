@@ -1,0 +1,17 @@
+diamond v0.9.14.115 | by Benjamin Buchfink <buchfink@gmail.com>
+Licensed under the GNU AGPL <https://www.gnu.org/licenses/agpl.txt>
+Check http://github.com/bbuchfink/diamond for updates.
+
+#CPU threads: 64
+Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
+Database file: output/Forest/fasta/BT0.fasta
+Opening the database file...  [0.001921s]
+Loading sequences...  [4.1e-05s]
+Masking sequences...  [0.006747s]
+Writing sequences...  [1.6e-05s]
+Loading sequences...  [1.8e-05s]
+Writing trailer...  [5e-06s]
+Closing the input file...  [2.3e-05s]
+Closing the database file...  [0.000707s]
+Processed 11 sequences, 70 letters.
+Total time = 0.01042s
