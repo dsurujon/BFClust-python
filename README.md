@@ -81,4 +81,4 @@ outputdir
 ```
 
 ## Testing 
-To test the installation and successful runs of ```BFC.py``` and ```BFCaugment.py```, please run ```python test_BFC.py``. If all tests are passed successfully, there should be no error messages.   
+To test the installation and successful runs of ```BFC.py``` and ```BFCaugment.py```, please run ```python test_BFC.py```. If all tests are passed successfully, there should be no error messages.   
