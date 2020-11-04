@@ -85,3 +85,10 @@ outputdir
 
 ## Testing 
 To test the installation and successful runs of ```BFC.py``` and ```BFCaugment.py```, please run ```python test_BFC.py```. If all tests are passed successfully, there should be no error messages.   
+
+## Citing
+Please cite the BFClust preprint:     
+    
+[Boundary-Forest Clustering: Large-Scale Consensus Clustering of Biological Sequences](https://www.biorxiv.org/content/10.1101/2020.04.28.065870v1)
+Defne Surujon, José Bento, Tim van Opijnen
+bioRxiv 2020.04.28.065870; doi: https://doi.org/10.1101/2020.04.28.065870
