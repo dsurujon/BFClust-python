@@ -1,0 +1,39 @@
+diamond v0.9.14.115 | by Benjamin Buchfink <buchfink@gmail.com>
+Licensed under the GNU AGPL <https://www.gnu.org/licenses/agpl.txt>
+Check http://github.com/bbuchfink/diamond for updates.
+
+#CPU threads: 64
+Scoring parameters: (Matrix=BLOSUM62 Lambda=0.267 K=0.041 Penalties=11/1)
+#Target sequences to report alignments for: 25
+Temporary directory: output/Forest/diamond
+Opening the database...  [0.002022s]
+Opening the input file...  [0.000586s]
+Opening the output file...  [0.003125s]
+Loading query sequences...  [5e-05s]
+Masking queries...  [0.0087s]
+Building query seed set...  [0.00029s]
+Algorithm: Query-indexed
+Building query histograms...  [0.007678s]
+Allocating buffers...  [0.000455s]
+Loading reference sequences...  [2.2e-05s]
+Building reference histograms...  [0.006328s]
+Allocating buffers...  [0.00034s]
+Initializing temporary storage...  [12.4575s]
+Processing query chunk 0, reference chunk 0, shape 0, index chunk 0.
+Building reference index...  [0.02616s]
+Building query index...  [0.020258s]
+Building seed filter...  [0.014005s]
+Searching alignments...  [0.009409s]
+Deallocating buffers...  [3e-06s]
+Computing alignments...  [0.530111s]
+Deallocating reference...  [6e-06s]
+Loading reference sequences...  [1.1e-05s]
+Deallocating buffers...  [6e-06s]
+Deallocating queries...  [5e-06s]
+Loading query sequences...  [2.2e-05s]
+Closing the input file...  [1.8e-05s]
+Closing the output file...  [0.001266s]
+Closing the database file...  [0.000166s]
+Total time = 13.0972s
+Reported 7 pairwise alignments, 7 HSPs.
+7 queries aligned.

@@ -9,7 +9,8 @@ def feature2record(thisfeature, thiscontig, strainname, minseqlen, ignoreinterna
         if ignoreinternalstop:
             thisrecord = thisfeature.extract(thiscontig.seq).translate(table=11, to_stop=False)
             thisrecord = SeqRecord.SeqRecord(thisrecord)
-            #thisrecord.seq = str(thisrecord.seq).replace('*', 'X')
+            thisrecord.seq = str(thisrecord.seq).replace('*', 'X')
+
             if len(str(thisrecord.seq))<=minseqlen:
                 return(None)
         else: 
