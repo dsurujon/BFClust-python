@@ -34,12 +34,22 @@ pip install BFClust==0.1.26.1
 ```
 
 ## Usage
-In order to cluster annotated genomes, use the following command: 
+BFClust takes in annotated `.gbk` files as input. In order to cluster annotated genomes, use the following command: 
 ```
 BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength] -s [whether or not to ignore internal stop codons]
 ```
 
 The input files need to be anotated genbank files (one for each isolate), in the input genbank directory. The CDS annotation from these genbank files will be used for orthologue clustering.    
+
+**Input options** 
+`-i`: input directory containing `.gbk` files. The `CDS` annotations on these files will be extracted and the translated amino acid sequences will be clustered.     
+`-o`: output directory. This is where the intermediate and final output will be written.     
+`-n`: Number of trees in the Boundary Forest. There will be `n` Trees constructes, and clustering will be performed on each of the `n` trees. **NB:** Boundary-Forest parallelizes the representative selection and clustering steps. It will use `n` cores, so while a higher `n` is beneficial in terms of getting a better estimate for the uncertainty, make sure you have at least `n` CPUs available.    
+`-t`: Sequence similarity threshold to be used during representative selection. Default value = 0.1. If the distance between a new sequence and a representative on a Boundary-Tree is smaller than this threshold, the new sequence will be assigned the representative, and will not be included in the clustering until the consensus step.      
+`-m`: Maximum number of children a node is allowed to have on the Boundary-Tree. Default value = 10. Larger values will result in shallow, bushy trees.     
+`-l`: Minimum sequence length. Sequences of length < `l` will not be clustered. Default value = 30.     
+`-s`: Ignore internal stop codons. When set to `True`, if a premature stop codon is encountered within a CDS, this codon is translated as `X` and translation is continued until the end of the CDS. If set to `False`, the translation will be stopped at the first internal stop codon, resulting in a truncated amino acid sequence.     
+    
 An output directory will be created, with the following structure:     
 ```
 outputdir
@@ -49,7 +59,7 @@ outputdir
 │   ├──pickle
 │   │   each Boundary-Tree stored as a pickle file
 │   ├──diamond
-│   │   output of diamond on each Boundary-Tree
+│   │   output of diamond pairwise alignments on each Boundary-Tree
 │   └──MCL
 │       output of MCL on each Boundary-Tree
 └── Consensus
@@ -59,6 +69,8 @@ outputdir
 ```
 
 The ```Forest``` directory contains intermediate data generated during representative selection and clustering. The consensus clustering data and output are in the ```Consensus``` directory. 
+
+`consensus.p` is a pickle file containing python-readable output.     
 
 ```cluster_assignments.csv``` contains the cluster assignments and item consensus scores for each input sequence, and ```cluster_consensus_scores.csv``` contains the consensus scores for each cluster. 
 
@@ -72,8 +84,16 @@ This is used when a clustering partition already exists, and one wishes to assig
 ```
 BFCaugment.py -i [input gbk directory] -o [output directory] -l [minimum length] -s [ignore internal stop] -b [initial representative selection] 
 ```
-The input sequences will be added to the clustering results for an **existing** output directory. The existing output directory will be amended with an additional sub-directory named ```Augmentation```, which will contain the updated scores, and cluster assignments for the new input sequences. 
+The input sequences will be added to the clustering results for an **existing** output directory. The existing output directory will be amended with an additional sub-directory named ```Augmentation```, which will contain the updated scores, and cluster assignments for the new input sequences.     
 
+**Input options** 
+`-i`: input directory containing `.gbk` files. The `CDS` annotations on these files will be extracted and the translated amino acid sequences will be added to an existing clustered set.     
+`-o`: output directory. This is where the **already clustered** dataset output is. This directory should have the same structure as the output directory outlined above. The Augmentation results will be added to this existing directory.         
+`-l`: Minimum sequence length. Sequences of length < `l` will not be clustered. Default value = 30.     
+`-s`: Ignore internal stop codons. When set to `True`, if a premature stop codon is encountered within a CDS, this codon is translated as `X` and translation is continued until the end of the CDS. If set to `False`, the translation will be stopped at the first internal stop codon, resulting in a truncated amino acid sequence.     
+`-b`: Whether to perform representative selection on the incoming input sequences. If set to `True`, a Boundary-Tree will be generated for the input sequences, and only the representatives will be directly compared to the existing clustering. The cluster assignments on the representatives will then be extended to the full incoming dataset.      
+    
+The existing output directory will have `cluster_consensus_scores.csv` and `cluster_assignments.csv` updated with the new clustering. The scores of existing clusters may change at this step. 
 ```
 outputdir
 ├── Forest
