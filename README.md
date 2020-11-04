@@ -12,8 +12,8 @@ There are three main scripts that can be used. ```BFC.py``` is for clustering a 
 
 ## Installation 
 
-Current version is 0.1.26:     
-https://test.pypi.org/project/BFClust/0.1.26/
+Current version is 0.1.26.1:     
+https://test.pypi.org/project/BFClust/0.1.26.1/
 
 
 If you do not have conda installed, run the following lines
@@ -30,7 +30,7 @@ conda env create -f bfclust24_env.yml
 conda activate bfclust_env
 
 
-pip install -i https://test.pypi.org/simple/ BFClust==0.1.26
+pip install BFClust==0.1.26.1
 ```
 
 ## Usage
