@@ -8,7 +8,7 @@ Boundary-Forest Clustering is a pan-genome clustering pipeline written in MATLAB
 
 The major advantage of BFClust is that it outputs the level of certainty (a consensus score) associated with each item and/or each cluster. This gives a measure of cluster "quality" when we do not know what the "real" clusters are supposed to be. Another advantage of BFClust is that it stores the Boundary-Forest, making it possible to add new sequences to the clustering without having to alter the existing clustering assignments ("cluster augmentation"). This not only reduces the time necessary to obtain cluster assignments for an incoming set of sequences (e.g. a newly sequenced bacterial isolate), but also keeps the existing clustering assignments the same.    
     
-There are three main scripts that can be used. ```run_BF_all.m``` and ```run_BF_single.m``` are for clustering a new dataset *de novo*, and ```add_to_clustering.m``` is for adding new sequences to an existing clustering partition. 
+There are three main scripts that can be used. ```BFC.py``` is for clustering a new dataset *de novo*, and ```BFCaugment.py``` is for adding new sequences to an existing clustering partition. 
 
 ## Installation 
 
@@ -70,7 +70,7 @@ This is used when a clustering partition already exists, and one wishes to assig
 3. The confidence scores are computed again, giving a level of uncertainty for the newly added clustering      
 
 ```
-BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength]
+BFCaugment.py -i [input gbk directory] -o [output directory] -l [minimum length] -s [ignore internal stop] -b [initial representative selection] 
 ```
 The input sequences will be added to the clustering results for an **existing** output directory. The existing output directory will be amended with an additional sub-directory named ```Augmentation```, which will contain the updated scores, and cluster assignments for the new input sequences. 
 
