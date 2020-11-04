@@ -47,7 +47,6 @@ dependencies:
   - zlib=1.2.11=h516909a_1009
   - zstd=1.4.5=h6597ccf_2
   - pip:
-    - bfclust==0.1.24
     - bleach==3.1.5
     - cffi==1.14.2
     - chardet==3.0.4

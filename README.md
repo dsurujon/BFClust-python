@@ -11,6 +11,7 @@ The major advantage of BFClust is that it outputs the level of certainty (a cons
 There are three main scripts that can be used. ```run_BF_all.m``` and ```run_BF_single.m``` are for clustering a new dataset *de novo*, and ```add_to_clustering.m``` is for adding new sequences to an existing clustering partition. 
 
 ## Installation 
+
 Current version is 0.1.26:     
 https://test.pypi.org/project/BFClust/0.1.26/
 
@@ -21,10 +22,10 @@ bash Miniconda2-latest-Linux-x86_64.sh
 export PATH=~/miniconda2/bin:$PATH
 ```
 
-Please download and use the [bfclust_env.yml](https://github.com/dsurujon/BFClust_scripts_data/blob/master/protocols/bfclust_env.yml) file to set up the conda environment specific for BFClust, and then install BFClust via pip
+Please download and use the [bfclust24_env.yml](https://github.com/dsurujon/BFClust-python/blob/master/bfclust24_env.yml) file to set up the conda environment specific for BFClust, and then install BFClust via pip
 
 ```
-conda env create -f bfclust_env.yml    
+conda env create -f bfclust24_env.yml    
 conda activate bfclust_env
 
 pip install -i https://test.pypi.org/simple/ BFClust==0.1.26
@@ -33,7 +34,7 @@ pip install -i https://test.pypi.org/simple/ BFClust==0.1.26
 ## Usage
 In order to cluster annotated genomes, use the following command: 
 ```
-BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength]
+BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength] -s [whether or not to ignore internal stop codons]
 ```
 
 The input files need to be anotated genbank files (one for each isolate), in the input genbank directory. The CDS annotation from these genbank files will be used for orthologue clustering.    
@@ -67,7 +68,7 @@ This is used when a clustering partition already exists, and one wishes to assig
 3. The confidence scores are computed again, giving a level of uncertainty for the newly added clustering      
 
 ```
-./BFCaugment.py -i [input gbk directory] -o [output directory] -b [whether or not to perform initial representative selection]
+BFC.py -i [input gbk directory] -o [output directory] -n [number of trees in the forest] -t [threshold] -m [maxChild] -l [minsequencelength]
 ```
 The input sequences will be added to the clustering results for an **existing** output directory. The existing output directory will be amended with an additional sub-directory named ```Augmentation```, which will contain the updated scores, and cluster assignments for the new input sequences. 
 

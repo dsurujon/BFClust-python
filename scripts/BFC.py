@@ -23,7 +23,6 @@ options.add_option("-l", "--length", dest="minseqlen", help="amino acid sequence
 options.add_option("-s", "--stop", dest="ignore", help="whether or not to ignore internal stop codons", default = True)
 
 
-
 def main():
 	#read input args
 	opts, args = options.parse_args()

@@ -9,5 +9,5 @@ setup(
     author_email = 'defnesurujon@gmail.com',
     packages = ['BFClust'],
     scripts = ['scripts/BFC.py', 'scripts/BFCaugment.py'],
-    install_requires = ['numpy', 'pandas', 'joblib', 'scikit-learn', 'biopython','threadpoolctl>=2.0.0']
+    install_requires = ['numpy', 'pandas', 'joblib', 'scikit-learn', 'biopython','threadpoolctl==2.1.0', 'pandas', 'biopython', 'scipy', 'joblib==0.11']
 )
