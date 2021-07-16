@@ -106,6 +106,9 @@ outputdir
 ## Testing 
 To test the installation and successful runs of ```BFC.py``` and ```BFCaugment.py```, please run ```python test_BFC.py```. If all tests are passed successfully, there should be no error messages.   
 
+## Contributing 
+Contributions to BFClust are welcome. If you would like to contribute to the further development of BFClust, please submit a [PR](https://github.com/dsurujon/BFClust-python/pulls). For comments, suggestions, troubleshooting, please open an [issue](https://github.com/dsurujon/BFClust-python/issues). 
+
 ## Citing
 Please cite the BFClust preprint:     
     
