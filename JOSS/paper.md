@@ -21,6 +21,8 @@ bibliography: paper.bib
 
 Boundary Forest Clustering (BFClust) is a tool for clustering annotated coding sequences in a bacterial pangenome. 
 
+# Statement of Need
+
 # Example Usage in Research
 
 # Acknowledgements
