@@ -1,3 +1,5 @@
+![versionbadge](https://badgen.net/badge/version/0.1.26/blue)
+
 # BFClust-python
  Boundary Forest Clustering - python implementation
 
